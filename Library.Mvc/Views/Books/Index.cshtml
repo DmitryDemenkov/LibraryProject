@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Library.Core.Models.Book>
+
+@{
+    ViewBag.Title = "Книги";
+}
+
+
+<h2>Книги</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Год</th>
+            <th>ISBN</th>
+            <th>Жанр</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.PublishYear</td>
+                <td>@book.ISBN</td>
+                <td>@book.Genre</td>
+
+                <td>@Html.ActionLink("Просмотр", "Details", new { id = book.Id })</td>
+                <td>@Html.ActionLink("Удалить", "Delete", new { id = book.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Добавить книгу", "Create", null, new { @class = "btn btn-primary" })
+</p>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Library.Core.Models.Chapter>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover">
+
+        <thead>
+            <tr>
+                <th style="width: 60px;">№</th>
+                <th>Название</th>
+                <th style="width: 150px;">Страница</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var chapter in Model)
+            {
+                <tr>
+                    <td>
+                        @chapter.Number
+                    </td>
+
+                    <td>
+                        @chapter.Title
+                    </td>
+
+                    <td>
+                        @chapter.Page
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+else
+{
+    <p class="text-muted">
+        Оглавление отсутствует.
+    </p>
+}

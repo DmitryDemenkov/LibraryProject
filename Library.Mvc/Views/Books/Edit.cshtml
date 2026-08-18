@@ -1,0 +1,74 @@
+﻿@model Library.Core.Models.Book
+
+@{
+    ViewBag.Title = "Редактирование книги";
+}
+
+<h2>Редактирование книги</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title, "Название")
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Author, "Автор")
+            @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Author)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PublishYear, "Год издания")
+            @Html.TextBoxFor(m => m.PublishYear, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PublishYear)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ISBN, "ISBN")
+            @Html.TextBoxFor(m => m.ISBN, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Genre, "Жанр")
+            @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, "Описание")
+            @Html.TextAreaFor(m => m.Description, new
+            {
+                @class = "form-control",
+                rows = 5
+            })
+        </div>
+
+        <div class="form-group">
+            <label>Оглавление</label>
+            @Html.Partial("_ContentsEditor", Model.Contents)
+        </div>
+
+        <br />
+
+        <button type="submit" class="btn btn-primary">
+            Сохранить
+        </button>
+
+        @Html.ActionLink("Отмена", "Details", new { id = Model.Id }, new { @class = "btn btn-default" })
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/XmlEditor/contents-editor.js"></script>
+}
